@@ -1,0 +1,10 @@
+main: ga.tumgaming.tumine.mail
+name: TUMine-Mail
+prefix: TUMine-Mail
+author: GeneralMine, N0R1, HrMoritz
+version: 0.1
+api-version: 1.14
+depend:
+   - Vault
+
+commands:
