@@ -1,4 +1,4 @@
-main: ga.tumgaming.tumine.mail
+main: ga.tumgaming.tumine.mail.TUMail
 name: TUMine-Mail
 prefix: TUMine-Mail
 author: GeneralMine, N0R1, HrMoritz

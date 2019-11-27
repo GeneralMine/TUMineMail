@@ -1,5 +1,6 @@
 package ga.tumgaming.tumine.mail.listeners;
 
+import ga.tumgaming.tumine.mail.Inbox;
 import ga.tumgaming.tumine.mail.util.Config;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,7 +21,7 @@ public class JoinListener implements Listener {
         
         
         
-        player.sendMessage("");
+        player.sendMessage(Inbox.createInbox(player, player.getLocation()));
     }
 
 }
