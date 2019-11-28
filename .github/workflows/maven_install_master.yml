@@ -18,8 +18,7 @@ jobs:
         java-version: 1.8
     - name: Build with Maven
       run: mvn install -B package --file pom.xml
-    - name: Get workspace
-      uses: actions/checkout@v1
+    - uses: actions/checkout@v1
       env:
         path: ${GITHUB_WORKSPACE}
     - name: copy file via ssh password
