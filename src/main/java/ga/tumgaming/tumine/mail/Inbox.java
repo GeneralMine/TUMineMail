@@ -57,6 +57,7 @@ public class Inbox {
 	}
 	
 	public String createInbox(Player player, Location loc) {
+		// Location to Copy from
 		Location skullLoc = new Location(player.getWorld(), 0, 1, 0);
 		
 		loc.getBlock().setType(skullLoc.getBlock().getType());
