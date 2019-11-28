@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ga.tumgaming.tumine</groupId>
-    <artifactId>TUMine-Mail</artifactId>
+    <artifactId>TUMineMail</artifactId>
     <version>0.1</version>
 
     <repositories>

@@ -1,1 +1,1 @@
-# TUMine-Mail
+# TUMineMail
