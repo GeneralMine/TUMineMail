@@ -21,7 +21,7 @@ jobs:
     - name: copy file via ssh password
       uses: appleboy/scp-action@master
       env:
-        path: $GITHUB_WORKSPACE
+        path: ${GITHUB_WORKSPACE}
       with:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
