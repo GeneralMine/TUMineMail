@@ -8,3 +8,6 @@ depend:
    - Vault
 
 commands:
+   createInbox:
+      description: Create Inbox
+      usage: /createInbox

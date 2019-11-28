@@ -56,12 +56,12 @@ public class Inbox {
         }
 	}
 	
-	public static String createInbox(Player player, Location loc) {
+	public String createInbox(Player player, Location loc) {
 		Location skullLoc = new Location(player.getWorld(), 0, 1, 0);
 		
 		loc.getBlock().setType(skullLoc.getBlock().getType());
 		
-		
+		inboxes.set(player.getName(), loc.toString());
 		
 		return "Inbox created!";
 	} 

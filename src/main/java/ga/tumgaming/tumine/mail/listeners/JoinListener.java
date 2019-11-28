@@ -10,6 +10,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class JoinListener implements Listener {
 
     private Config config;
+    private Inbox inbox;
 
     public JoinListener(Config config) {
         this.config = config;
@@ -19,9 +20,7 @@ public class JoinListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         
-        
-        
-        player.sendMessage(Inbox.createInbox(player, player.getLocation()));
+        player.sendMessage(inbox.createInbox(player, player.getLocation()));
     }
 
 }
