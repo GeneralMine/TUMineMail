@@ -9,11 +9,9 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class JoinListener implements Listener {
 
-    private Config config;
     private Inbox inbox;
 
-    public JoinListener(Config config, Inbox inbox) {
-        this.config = config;
+    public JoinListener(Inbox inbox) {
         this.inbox = inbox;
     }
 

@@ -13,7 +13,7 @@ import ga.tumgaming.tumine.mail.util.*;
 public class TUMail extends JavaPlugin {
 
     private static Config inboxes;
-
+    private static Inbox inboxManager;
     private static Plugin plugin;
 
     @Override
@@ -39,7 +39,7 @@ public class TUMail extends JavaPlugin {
     private static void registerEvents() {
         PluginManager pluginManager = Bukkit.getPluginManager();
 
-        pluginManager.registerEvents(new JoinListener(inboxes), plugin);
+        pluginManager.registerEvents(new JoinListener(inboxManager), plugin);
     }
 
     public static Config getInboxesConfig() {
