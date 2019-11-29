@@ -15,6 +15,10 @@ import ga.tumgaming.tumine.mail.Inbox;
 public class ClickListener implements Listener {
 	public boolean searchForInbox = false;
 	
+	private Inbox inbox;
+	public ClickListener(Inbox inbox) {
+		this.inbox = inbox;
+	}
 	@EventHandler
 	public void onPlayerClicks(PlayerInteractEvent event) {
 	    Player player = event.getPlayer();
@@ -23,7 +27,7 @@ public class ClickListener implements Listener {
 	    BlockFace face = event.getBlockFace();
 
 	     if ( searchForInbox && action.equals( Action.RIGHT_CLICK_BLOCK ) && block != null && block.getType() == Material.CHEST ) {
-	    	 String message = Inbox.createInbox(player, event.getClickedBlock().getLocation());
+	    	 String message = inbox.createInbox(player, event.getClickedBlock().getLocation());
 	    	 player.sendMessage(message);
 	     }
 	}
