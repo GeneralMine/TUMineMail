@@ -66,24 +66,22 @@ public class Inbox {
 	public Material getSkullInboxMaterial(Player player) {
 		return new Location(player.getWorld(), 0, 1, 0).getBlock().getType();
 	}
-	
+
 	public Material getSkullLetterBoxMaterial(Player player) {
 		return new Location(player.getWorld(), 1, 1, 0).getBlock().getType();
 	}
-	
+
 	public String createInbox(Player player, Location loc) {
 		if (inboxes.get(player.getName()) == null) {
 			// Location of private Inbox Skull to Copy from
-			
-			//Material skull = Material.PLAYER_HEAD;
-			
-			
-			
+
+			// Material skull = Material.PLAYER_HEAD;
+
 			loc.getBlock().setType(Material.AIR);
 			ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 			String command = "clone 0 1 0 0 1 0 " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ();
 			Bukkit.dispatchCommand(console, command);
-			
+
 			inboxes.set(player.getName(), loc);
 
 			return "Inbox created!";
@@ -97,9 +95,9 @@ public class Inbox {
 			// Location of private Inbox Skull to Copy from
 			Location inboxLocation = (Location) inboxes.get(player.getName());
 			inboxLocation.getBlock().setType(Material.AIR);
-			//Chest chest = (Chest) inboxLocation.getBlock();
-			//Inventory chestInventory = chest.getInventory();
-			//chestInventory.setContents((ItemStack[]) letters.get(player.getName()));
+			// Chest chest = (Chest) inboxLocation.getBlock();
+			// Inventory chestInventory = chest.getInventory();
+			// chestInventory.setContents((ItemStack[]) letters.get(player.getName()));
 			player.sendMessage(inboxes.test(player) + " test");
 
 			inboxes.delete(player.getName());
@@ -108,9 +106,9 @@ public class Inbox {
 			return "Error: trying to destroy inbox, but there is no";
 		}
 	}
-	
+
 	public Location getInboxLocation(Player player) {
 		return (Location) inboxes.get(player.getName());
 	}
-	
+
 }
