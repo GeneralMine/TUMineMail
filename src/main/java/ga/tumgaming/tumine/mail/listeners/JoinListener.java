@@ -17,8 +17,7 @@ public class JoinListener implements Listener {
 
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
-		String currentJar = ClassLoader.getSystemClassLoader().getResource(".").getPath();
-		event.getPlayer().sendMessage(currentJar);
+		
 	}
 
 }
