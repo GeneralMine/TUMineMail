@@ -9,17 +9,16 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 public class JoinListener implements Listener {
 
-    private Inbox inbox;
+	private Inbox inbox;
 
-    public JoinListener(Inbox inbox) {
-        this.inbox = inbox;
-    }
+	public JoinListener(Inbox inbox) {
+		this.inbox = inbox;
+	}
 
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        
-        player.sendMessage(inbox.createInbox(player, player.getLocation()));
-    }
+	@EventHandler
+	public void onPlayerJoin(PlayerJoinEvent event) {
+		String currentJar = ClassLoader.getSystemClassLoader().getResource(".").getPath();
+		event.getPlayer().sendMessage(currentJar);
+	}
 
 }
