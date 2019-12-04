@@ -9,10 +9,12 @@ import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.SkullType;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.block.Skull;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Directional;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Item;
@@ -27,6 +29,7 @@ import org.bukkit.metadata.MetadataValue;
 import org.shanerx.mojang.Mojang;
 import org.shanerx.mojang.PlayerProfile;
 
+import ga.tumgaming.tumine.mail.listeners.ClickListener;
 import ga.tumgaming.tumine.mail.util.Config;
 
 public class Inbox {
@@ -73,6 +76,7 @@ public class Inbox {
 
 	public String createInbox(Player player, Location loc) {
 		if (inboxes.get(player.getName()) == null) {
+			ClickListener.waitingForInboxCreationClick = true;
 			// Location of private Inbox Skull to Copy from
 
 			// Material skull = Material.PLAYER_HEAD;
@@ -81,8 +85,17 @@ public class Inbox {
 			ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 			String command = "clone 0 1 0 0 1 0 " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ();
 			Bukkit.dispatchCommand(console, command);
+			//Skull test = (Skull) loc.getBlock().getState();
+			//BlockData data = loc.getBlock().getBlockData();
+			
+			//data.getMaterial();
+			
+			Inventory inv = Bukkit.createInventory(null, 27, player.getName() + "'s Inbox!");
 
-			inboxes.set(player.getName(), loc);
+			
+			//Directional direction = (Directional) test.getBlockData();
+			//direction.setFacing(player.getFacing());
+			inboxes.set(player.getName(), loc + "," + inv);
 
 			return "Inbox created!";
 		} else {
@@ -99,7 +112,6 @@ public class Inbox {
 			// Inventory chestInventory = chest.getInventory();
 			// chestInventory.setContents((ItemStack[]) letters.get(player.getName()));
 			player.sendMessage(inboxes.test(player) + " test");
-
 			inboxes.delete(player.getName());
 			return "Inbox destroyed!";
 		} else {

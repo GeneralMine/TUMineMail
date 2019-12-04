@@ -28,8 +28,8 @@ public class InboxCommand implements CommandExecutor {
 			switch (args[0]) {
 			case "create": {
 				// inbox create
-				ClickListener.waitingForInboxCreationClick = true;
 				sender.sendMessage("Please right click on the chest to become your Inbox");
+				ClickListener.waitingForInboxCreationClick = true;
 				break;
 			}
 			case "delete": {
