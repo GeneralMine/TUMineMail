@@ -2,7 +2,7 @@ main: ga.tumgaming.tumine.mail.TUMail
 name: TUMineMail
 prefix: TUMineMail
 author: GeneralMine, N0R1, HrMoritz
-version: 0.1
+version: ${project.version}
 api-version: 1.14
 depend:
    - Vault
