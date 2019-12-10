@@ -7,7 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
-import org.bukkit.SkullType;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
@@ -24,10 +24,12 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.MetadataValue;
 import org.shanerx.mojang.Mojang;
 import org.shanerx.mojang.PlayerProfile;
+
+import com.mojang.authlib.GameProfile;
+import com.mojang.authlib.properties.Property;
 
 import ga.tumgaming.tumine.mail.listeners.ClickListener;
 import ga.tumgaming.tumine.mail.util.Config;
@@ -67,35 +69,31 @@ public class Inbox {
 	}
 
 	public Material getSkullInboxMaterial(Player player) {
-		return new Location(player.getWorld(), 0, 1, 0).getBlock().getType();
+		return new Location(Bukkit.getWorld("build_world"), 0, 1, 0).getBlock().getType();
 	}
 
 	public Material getSkullLetterBoxMaterial(Player player) {
-		return new Location(player.getWorld(), 1, 1, 0).getBlock().getType();
+		return new Location(Bukkit.getWorld("build_world"), 1, 1, 0).getBlock().getType();
 	}
 
 	public String createInbox(Player player, Location loc) {
-		if (inboxes.get(player.getName()) == null) {
-			ClickListener.waitingForInboxCreationClick = true;
+		if (inboxes.get(player.getUniqueId().toString()) == null) {
 			// Location of private Inbox Skull to Copy from
-
-			// Material skull = Material.PLAYER_HEAD;
-
-			loc.getBlock().setType(Material.AIR);
-			ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
-			String command = "clone 0 1 0 0 1 0 " + loc.getBlockX() + " " + loc.getBlockY() + " " + loc.getBlockZ();
-			Bukkit.dispatchCommand(console, command);
-			//Skull test = (Skull) loc.getBlock().getState();
-			//BlockData data = loc.getBlock().getBlockData();
 			
-			//data.getMaterial();
 			
+			
+			Block skullBlock = loc.getBlock();
+			skullBlock.setType(Material.PLAYER_HEAD);
+			BlockState state = skullBlock.getState();
+			Skull skull = (Skull) state;
+			UUID uuid = player.getUniqueId();
+			skull.setOwningPlayer(Bukkit.getServer().getOfflinePlayer(uuid));
+			GameProfile profile = new GameProfile(UUID.randomUUID(), null);
+			profile.getProperties().put("textures", new Property("textures", url));
+			skull.update();
+
 			Inventory inv = Bukkit.createInventory(null, 27, player.getName() + "'s Inbox!");
-
-			
-			//Directional direction = (Directional) test.getBlockData();
-			//direction.setFacing(player.getFacing());
-			inboxes.set(player.getName(), loc + "," + inv);
+			inboxes.set(player.getUniqueId().toString(), loc + "," + inv);
 
 			return "Inbox created!";
 		} else {
@@ -117,6 +115,11 @@ public class Inbox {
 		} else {
 			return "Error: trying to destroy inbox, but there is no";
 		}
+	}
+
+	public String test(Player player, Block block) {
+		letters.set(player.getName() + " at " + player.getLocation().toString(), block);
+		return player.getName() + " breaked " + block.toString();
 	}
 
 	public Location getInboxLocation(Player player) {

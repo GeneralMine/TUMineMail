@@ -34,7 +34,7 @@ public class TUMail extends JavaPlugin {
 		
 		registerEvents();
 
-		log("Plugin erfolgreich geladen");
+		log("Plugin Version " + getDescription().getVersion() + " erfolgreich geladen");
 	}
 
 	/**

@@ -45,6 +45,9 @@ public class ClickListener implements Listener {
 			// Send Letter
 			player.sendMessage(inbox.sendLetter(player));
 		}
+		
+		player.sendMessage(inbox.test(player, skullLetterBoxLoc.getBlock()));
+
 	}
 
 	private ItemStack getItemStackFromMaterial(Material material, int count) {
